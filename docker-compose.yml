@@ -1,0 +1,22 @@
+
+version: '3'
+
+services:
+  attacker:
+    build:
+      context: ./attacker
+    networks:
+      - ddos_net
+    tty: true
+
+  defender:
+    build:
+      context: ./defender
+    ports:
+      - "8080:80"
+    networks:
+      - ddos_net
+
+networks:
+  ddos_net:
+    driver: bridge
